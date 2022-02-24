@@ -12,26 +12,18 @@
 
 from random import randint,uniform
 
-# Случайное целое число
-start = int(input('Старт: '))
-end   = int(input('Конец: '))
-
-result = randint(0,(end - start)) + start
-print(f'Случайное целое число в диапозоне от {start} до {end}: {result}')
-
-# Случайное вещественное число
-start = float(input('Старт: '))
-end   = float(input('Конец: '))
-
-result = uniform(0,(end-start)) + start
-print(f'Вещественное число в диапозоне от {start} до {end}: {result}')
-
-# Случайный символ
 start = input('Старт: ')
-end   = input('Конец: ')
+end = input('Конец: ')
 
-result = randint(0,(int(ord(end)) - int(ord(start)))) + int(ord(start))
-print(f'Случайный символ в диапозоне от "{start}" до "{end}": {chr(result)}')
+if start.isdigit() and end.isdigit():
+    result = randint(0, (int(end) - int(start))) + int(start)
+    print(f'Случайное целое число в диапозоне от {start} до {end}: {result}')
+elif '.' in start or '.' in end:
+    result = uniform(0, (float(end) - float(start))) + float(start)
+    print(f'Вещественное число в диапозоне от {start} до {end}: {result}')
+else:
+    result = randint(0,(int(ord(end)) - int(ord(start)))) + int(ord(start))
+    print(f'Случайный символ в диапозоне от "{start}" до "{end}": {chr(result)}')
 
 
 
