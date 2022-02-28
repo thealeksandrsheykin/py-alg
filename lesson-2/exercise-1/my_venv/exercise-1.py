@@ -18,12 +18,25 @@ op = {
     '/': operator.truediv,
 }
 
-
+print('Введите "0" вместо знака операции если хотите завершить работу скрипта')
 while True:
-    a = input('Введите первое число: ')
-    b = input('Введите второе число: ')
-    c = input('Введите знак операции(+,-,*,/), а если хотите завершить, введите "0": ')
-    if not c in op.keys():
-        print(f'ВВедите другой зна')
+    c = input('Введите знак операции(+,-,*,/): ')
     if c == '0':
         break
+    if c not in op.keys():
+        print('Неверный знак операции...')
+        continue
+    else:
+        a = float(input('Введите первое число: '))
+        b = float(input('Введите второе число: '))
+        if c == '-':
+            print(f'Вычитание: {op[c](a, b)}')
+        elif c == '+':
+            print(f'Сумма: {op[c](a, b)}')
+        elif c == '*':
+            print(f'Умножение: {op[c](a, b)}')
+        elif c == '/':
+            try:
+                print(f'Деление: {op[c](a, b)}')
+            except ZeroDivisionError:
+                print('Деление на нуль запрещено!')
