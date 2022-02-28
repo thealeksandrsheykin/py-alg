@@ -10,10 +10,10 @@ def my_func(data, even=0, odd=0):
     if data:
         if data % 2 == 0:
             even += 1
-            my_func(data//10,even,odd)
+            return my_func(data//10,even,odd)
         else:
             odd += 1
-            my_func(data//10,even,odd)
+            return my_func(data//10,even,odd)
     else:
         print(f'Четных:   {even}\n'
               f'Нечетных: {odd}\n')
