@@ -35,7 +35,7 @@ while True:
             print(f'Сумма: {op[c](a, b)}')
         elif c == '*':
             print(f'Умножение: {op[c](a, b)}')
-        elif c == '/':
+        else:
             try:
                 print(f'Деление: {op[c](a, b)}')
             except ZeroDivisionError:
