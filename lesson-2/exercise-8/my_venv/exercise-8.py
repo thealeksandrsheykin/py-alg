@@ -38,3 +38,5 @@ for i in range(n):
     print(f'Цифра {number} встречается в {data}: {my_func(number, data)}')
 
 
+
+
