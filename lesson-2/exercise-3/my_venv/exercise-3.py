@@ -6,9 +6,10 @@
 число 3486, то надо вывести число 6843.
 '''
 data = int(input('Введите число: '))
-
+# 1. Способ
 # data [::-1]
 
+# 2. Способ
 result = 0
 while data:
     result = result * 10 + (data % 10)
@@ -16,3 +17,15 @@ while data:
 
 print(f'Наоборот: {result}')
 
+# 3.Способ
+result = 0
+def my_func(data):
+    global result
+    if data:
+        result = result * 10 + (data % 10)
+        my_func(data // 10)
+    return result
+
+
+data = int(input('Введите число: '))
+print(f'Наоборот: {my_func(data)}')
