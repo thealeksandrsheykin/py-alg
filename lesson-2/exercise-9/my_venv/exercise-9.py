@@ -18,8 +18,9 @@ def my_func(n):
 list_numbers = [randint(0,9999) for _ in range(4)]
 my_tuple = (0,0)
 for i in list_numbers:
-    if my_func(i) > my_tuple[1]:
-        my_tuple = (i,my_func(i))
+    tmp_data = my_func(i)
+    if tmp_data > my_tuple[1]:
+        my_tuple = (i,tmp_data)
     else: continue
 
 print(f'Сумма цифры: {my_tuple[0]}: {my_tuple[1]}')
