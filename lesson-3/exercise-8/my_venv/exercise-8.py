@@ -12,7 +12,7 @@ for i in range(0,5):
     summa = 0
     tmp_list = list()
     for j in range(0,3):
-        my_var = int(input(f'Введите значение ({i+1,j+1}): '))
+        my_var = int(input(f'Введите значение {i+1,j+1}: '))
         tmp_list.append(my_var)
         summa += my_var
     tmp_list.append(summa)
