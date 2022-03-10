@@ -16,4 +16,4 @@ for i in range(0, len(my_list)):
         index = i
     elif (my_list[i] < 0) and (my_list[i] > my_list[index]):
         index = i
-print(f'Максимальный отрицательный элемент в списке: {my_list[index]}')
+print(f'Максимальный отрицательный элемент в списке: {my_list[index]} имеет индекс: {index}')
