@@ -14,7 +14,7 @@ from timeit import timeit
 составные числа, кратные простым, начиная с 2.
 '''
 
-'''
+
 def my_func_1(n):
     my_list = [i for i in range(n)]
     my_list[1] = 0
@@ -84,7 +84,7 @@ for n in (10,100,1000,10000,100000):
 # cProfile my_func_2(1000)  : 1    0.011    0.011    0.011    0.011 exercise-2.py:53(my_func_2)
 # cProfile my_func_2(10000) :
 # cProfile my_func_2(100000):
-'''
+
 
 def my_func_3(n):
     my_list = [2]
