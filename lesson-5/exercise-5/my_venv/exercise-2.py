@@ -28,62 +28,50 @@ print(f'Произведение чисел {a.upper()} и {b.upper()} = {c_mul[
 '''
 
 # Cпособ №2
-class My_class():
-    def __init__(self,data):
-        self.bin    = {'0':0,'1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7,
-                     '8':8,'9':9, 'A':10,'B':11,'C':12,'D':13,'E':14,'F':15}
-        self.hex    = list(self.bin.keys())
-        self.data   = data
-        self.result = list()
+import collections
 
-    def __add__(self, other):
-        print(True,self.data,other.data)
-        if len(other.data) > len(self.data):
-            self.data, other.data = other.data, self.data
-        other.data = ['0' for _ in range(len(self.data) - len(other.data))] + other.data
-        flag = 0
-        for i in range(len(self.data)-1,-1,-1):
-            data_result = self.bin[self.data[i]] + self.bin[other.data[i]] + flag
-            if data_result >= 16:
-                data_result -= 16
-                flag = 1
-            else:
-                flag = 0
-            self.result.append(self.hex[data_result])
-        if flag:
-            self.result.append('1')
-        return self.result[::-1]
+HEX_DICT = {'0':0,'1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7,
+            '8':8,'9':9, 'A':10,'B':11,'C':12,'D':13,'E':14,'F':15}
 
-    def __mul__(self, other):
-        if len(other.data) > len(self.data):
-            self.data,other.data = other.data,self.data
-        other.data = ['0' for _ in range(len(self.data)-len(other.data))] + other.data
-        result = ['0']
-        for  i in range (len(self.data)-1,-1,-1):
-            data_2 = self.bin[other.data[i]]
-            print(data_2)
+def edit_data(x,y):
+    deq_x = collections.deque(x)
+    deq_y = collections.deque(y)
+    if len(deq_y) > len(deq_x):
+        deq_x, deq_y = deq_y, deq_x
+    deq_y.extendleft('0' * (len(deq_x) - len(deq_y)))
+    return (deq_x, deq_y)
 
-            tmp_list = ['0']
-            for _ in range(data_2):
-                print(True)
-                tmp_list = self.data.__add__(tmp_list)
-                print(tmp_list)
+def sum_data(x,y):
+    x,y = edit_data(x,y)
+    result = collections.deque()
+    flag = 0
+    for i in range(len(x) - 1, -1, -1):
+        my_var = HEX_DICT[x[i]] + HEX_DICT[y[i]] + flag
+        if my_var >= 16:
+            my_var -= 16
+            flag = 1
+        else:
+            flag = 0
+        result.appendleft(list(HEX_DICT.keys())[my_var])
+    if flag:
+        result.appendleft('1')
+    return list(result)
 
-            tmp_list.extend('0'*(len(self.data)-i-1))
-          #  print(spam)
-          #  result = tmp_list.__add__(result)
-           # print(result)
-        return result
+def mul_data(x,y):
+    x,y = edit_data(x,y)
+    result = collections.deque('0')
+    for i in range(len(x) - 1, -1, -1):
+        my_var = HEX_DICT[y[i]]
+        tmp_list = collections.deque('0')
+        for _ in range(my_var):
+            tmp_list = sum_data(tmp_list,x)
+        tmp_list.extend('0' * (len(x) - i - 1))
+        result = sum_data(result,tmp_list)
+    return list(result)
 
 
+x = (input('Введите первое число в формате HEX: ')).upper()
+y = (input('Введите второе число в формате HEX: ')).upper()
 
-
-
-a = list((input('Введите первое число в формате HEX: ')).upper())
-b = list((input('Введите второе число в формате HEX: ')).upper())
-
-x = My_class(a)
-y = My_class(b)
-
-print(f'Сумма чисел: {a} + {b} = {x+y}')
-print(x*y)
+print(f'Сумма чисел {x} + {y} = {sum_data(x,y)}')
+print(f'Произведение чисел {x} * {y} = {mul_data(x,y)}')
