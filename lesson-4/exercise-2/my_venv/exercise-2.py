@@ -119,3 +119,5 @@ for n in (10,100,1000,10000,100000):
 # cProfile my_func_3(1000)  : 1    0.001    0.001    0.001    0.001 exercise-2.py:89(my_func_3)
 # cProfile my_func_3(10000) : 1    0.047    0.047    0.047    0.047 exercise-2.py:89(my_func_3)
 # cProfile my_func_3(100000): 
+
+
