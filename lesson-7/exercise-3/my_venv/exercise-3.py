@@ -9,5 +9,12 @@
 '''
 from random import randrange
 
+
 if __name__ == '__main__':
-    pass
+    m = 4
+    size = (2 * m) + 1
+    my_list = [None] * size
+    for i in range(len(my_list)):
+        my_list[i] = randrange(-100,100)
+    print(my_list)
+    print(nlogn_median(my_list))
